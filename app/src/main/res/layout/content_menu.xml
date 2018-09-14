@@ -1,0 +1,85 @@
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="16dp"
+    android:layout_margin="8dp"
+    app:cardElevation="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        tools:context=".fragment.MenuFragment">
+
+        <TextView
+            android:id="@+id/plate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:text="Entrecotte" />
+
+        <ImageView
+            android:id="@+id/menu_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/plate"
+            android:contentDescription="descripcion plato"
+            android:src="@drawable/copa_tiramisu" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/menu_image"
+            android:layout_toEndOf="@id/menu_image"
+            android:layout_below="@id/plate"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/menu_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/num_plate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Plato 02" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Precio: 30 €" />
+
+            <TextView
+                android:id="@+id/other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Texto libre" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/menu_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/menu_image"
+            tools:text="Entrecotte a la plancha con queso de cabra, pimimientos y patatas fritas" />
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
