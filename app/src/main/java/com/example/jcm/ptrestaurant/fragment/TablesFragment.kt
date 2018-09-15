@@ -16,6 +16,7 @@ import com.example.jcm.ptrestaurant.model.TableMenu
 import com.example.jcm.ptrestaurant.model.TableMenuList
 import com.example.jcm.ptrestaurant.model.TablesList
 import kotlinx.android.synthetic.main.fragment_tables.*
+import kotlin.math.roundToLong
 
 
 class TablesFragment : Fragment() {
@@ -40,14 +41,37 @@ class TablesFragment : Fragment() {
         //val tablesL = TablesList
        // val adapter = ArrayAdapter<Table>(activity, android.R.layout.simple_list_item_1,
             //    tablesL.toArray())
-        val tablesL = TableMenuList
-        val adapter = ArrayAdapter<TableMenu>(activity, android.R.layout.simple_list_item_1,
-                tablesL.toArray())
-        tables_list.adapter = adapter
 
+//pruebas de calculo para total platos
+        val tablesL = TableMenuList
+        //val iterate = TableMenuList.
+        val totalPlates= tablesL.calculPlates(0)
+        val lista: MutableList<TableMenu> = ArrayList()
+        val otraLista = tablesL.toArray()
+        val iterate = otraLista.listIterator()
+        while(iterate.hasNext()){
+            val oldValue = iterate.next()
+            val totalPlates = oldValue.menutable.size
+            val totalChar = oldValue.description.length
+            val textTables = "Platos: " + totalPlates.toString()
+
+            var precio = 0f
+
+            oldValue.menutable.forEach { precio += it.price }
+            val totCheck = "Total de la mesa: ${ "%.2f".format(precio).toString()}"
+
+            oldValue.description = "${oldValue.description.padEnd(150 - totalChar)}  $textTables  $totCheck"
+            iterate.set(oldValue)
+        }
+//Fin de pruebas
+
+        val adapter = ArrayAdapter<TableMenu>(activity, android.R.layout.simple_list_item_1,
+              otraLista //tablesL.toArray()
+        )
+        tables_list.adapter = adapter
         //Queremos saber que fila se ha pulsado en la lista
         tables_list.setOnItemClickListener{_, _, index, _ ->
-            //Avisamos al listener que una ciudad ha sido seleccionada
+            //Avisamos al listener que una mesa ha sido seleccionada
             onTableSelectedListener?.onTableSelected(tablesL[index], index)
         }
 

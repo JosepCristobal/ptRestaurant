@@ -124,15 +124,34 @@ object TableMenuList {
                                     Allergen("14", "Sulfitos", R.drawable.a_sulfitos)
 
                             ),""
+                    ),
+                    MenuRest("11","Sorbete de mandarina",R.drawable.sorbete_mandarina,10.00f,"Sorbete de mandarina con un toque especial de la casa",
+                            listOf(
+                                    Allergen("09", "Lacteos", R.drawable.a_lacteos),
+                                    Allergen("14", "Sulfitos", R.drawable.a_sulfitos)
+
+                            ),""
                     )
 
             )
-            )
+            ),
+            TableMenu("Mesa05", "Dacosta", mutableListOf()),
+            TableMenu("Mesa06", "Aduriz", mutableListOf()),
+            TableMenu("Mesa07", "Muñoz", mutableListOf()),
+            TableMenu("Mesa08", "Roca", mutableListOf()),
+            TableMenu("Mesa09", "Cruz", mutableListOf()),
+            TableMenu("Mesa10", "Arguiñano", mutableListOf())
 
     )
 
     val count
         get() = TableMenuList.tablesMenuList.size
+
+
+    fun calculPlates(index: Int): Int {
+        var element: Int = TableMenuList.tablesMenuList[index].menutable.toTypedArray().size
+        return element
+    }
 
     fun getMenu(index: Int) = tablesMenuList[index]
 
@@ -140,5 +159,6 @@ object TableMenuList {
 
     operator fun get(index: Int) = tablesMenuList[index]
 
-    fun toArray() = TableMenuList.tablesMenuList.toTypedArray()
+    fun toArray() = TableMenuList.tablesMenuList.toMutableList()
+
 }
