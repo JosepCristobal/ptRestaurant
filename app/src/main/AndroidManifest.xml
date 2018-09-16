@@ -10,21 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.TablesActivity">
+
+        </activity>
+        <activity
+            android:name=".activity.MenuActivity"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.MenuTableActivity" />
+        <activity android:name=".activity.DetailMenuActivity" />
+        <activity android:name=".activity.Alergeno"></activity>
+        <activity android:name=".activity.Pruebas_insert">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.MenuActivity"
-            android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.MenuTableActivity"></activity>
-        <activity android:name=".activity.DetailMenuActivity"></activity>
-        <activity android:name=".activity.Alergeno">
-
-
 
         </activity>
     </application>

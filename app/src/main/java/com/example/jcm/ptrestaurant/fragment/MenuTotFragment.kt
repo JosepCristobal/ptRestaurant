@@ -2,6 +2,7 @@ package com.example.jcm.ptrestaurant.fragment
 
 
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.Toast
 
 
 import com.example.jcm.ptrestaurant.R
+import com.example.jcm.ptrestaurant.activity.DetailMenuActivity
 import com.example.jcm.ptrestaurant.adapter.MenuRecyclerViewAdapter
 import com.example.jcm.ptrestaurant.model.MenuList
 import com.example.jcm.ptrestaurant.model.MenuRest
@@ -31,6 +33,8 @@ class MenuTotFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_menu, container, false)
+
+
     }
 
     var menuList: List<MenuRest> ? = null
@@ -39,6 +43,10 @@ class MenuTotFragment : Fragment() {
             if (value != null ){
                 //Faltara por rellenar la llamada al adaptador
                 menu_list.adapter = MenuRecyclerViewAdapter(value)
+
+
+                //Si alguien pulsa una fila, nos queremos enterar
+                setRecyclerViewClickListener()
             }
         }
 
@@ -55,10 +63,28 @@ class MenuTotFragment : Fragment() {
             //Le decimos quien es el que anima al RecyclerView
             menu_list.itemAnimator = DefaultItemAnimator()
 
-                menuList = MenuList.toArray().asList()
+                //menuList = MenuList.toArray().asList()
+                menuList = MenuList.toArray().toMutableList()
 
         }, 100.toLong())
 
+    }
+
+    fun setRecyclerViewClickListener() {
+        // Si alguien pulsa un elemento del RecyclerView, nos queremos enterar aquí
+        val adapter = menu_list?.adapter as? MenuRecyclerViewAdapter
+        adapter?.onClickListener = View.OnClickListener {
+            // Alguien ha pulsado un elemento del RecyclerView
+            val MenuIndex = 1 //menu_list.getChildAdapterPosition(it)
+            // Opciones especiales para navegar con vistas comunes
+            val animationOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity!!,
+                    it,
+                    "transition_to_detail"
+            )
+
+            startActivity(DetailMenuActivity.intent(activity!!, 0, MenuIndex), animationOptions.toBundle())
+        }
     }
 
 }

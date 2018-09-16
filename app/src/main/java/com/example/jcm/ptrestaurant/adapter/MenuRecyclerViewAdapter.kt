@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import com.example.jcm.ptrestaurant.model.MenuRest
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.jcm.ptrestaurant.R
@@ -36,6 +37,7 @@ class MenuRecyclerViewAdapter (private val menuList: List<MenuRest>): RecyclerVi
         val price =  itemView.findViewById<TextView?>(R.id.price)
         val menu_description = itemView.findViewById<TextView?>(R.id.menu_description)
         val other = itemView.findViewById<TextView?>(R.id.other)
+        val buttonAler = itemView.findViewById<Button>(R.id.alergen_button)
 
         fun bindMenu(menuList: MenuRest){
             //Atualizamos la vista con el modelo
@@ -45,6 +47,7 @@ class MenuRecyclerViewAdapter (private val menuList: List<MenuRest>): RecyclerVi
             price?.text = "Precio:  ${menuList.price.toString()}€"
             menu_description?.text= "Descripción: ${menuList.detail.toString()}"
             other?.text = "Consideraciones: ${menuList.menuobs}"
+            buttonAler.text = ""
         }
 
     }

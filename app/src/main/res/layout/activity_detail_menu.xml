@@ -15,11 +15,9 @@
         android:transitionName="transition_to_detail"
         tools:context=".activity.DetailActivity">
 
-        <include layout="@layout/content_menu">
+    <include layout="@layout/content_menu">
 
-
-        </include>
-
+    </include>
 
     </FrameLayout>
 

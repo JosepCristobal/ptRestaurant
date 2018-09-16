@@ -10,6 +10,7 @@ import android.widget.*
 import com.example.jcm.ptrestaurant.R
 import com.example.jcm.ptrestaurant.model.Allergen
 import com.example.jcm.ptrestaurant.model.AllergensList
+import com.example.jcm.ptrestaurant.model.MenuList
 import com.example.jcm.ptrestaurant.model.TableMenuList
 import kotlinx.android.synthetic.main.activity_alergenos.*
 import java.lang.reflect.Array
@@ -29,7 +30,7 @@ class Alergeno : AppCompatActivity() {
             return intent
         }
     }
-    
+
     val COLUMNS = 2
     val tableLayout by lazy { TableLayout(this) }
     val alerogens = AllergensList
@@ -49,11 +50,18 @@ class Alergeno : AppCompatActivity() {
 
     fun createTable() {
         val table2 = TableMenuList[intent.getIntExtra(EXTRA_TABLE_INDEX, 0)]
-        val menuIndex2 = intent.getIntExtra(EXTRA_MENU_INDEX, 0)
-        val menuP2 = table2.menutable[menuIndex2]
+        //val menuIndex2 = intent.getIntExtra(EXTRA_MENU_INDEX, -1)
+        val extraTable = intent.getIntExtra(EXTRA_TABLE_INDEX,0)
+        val extraMenu = intent.getIntExtra(EXTRA_MENU_INDEX, 0)
+
+        val menuP2 = table2.menutable[extraMenu]
+        val menuP3 = MenuList.toArray()[extraMenu]
         lateinit var otraLista:MutableList<Allergen>
-        if (intent.getIntExtra(EXTRA_TABLE_INDEX,0) == 0){
+
+        if (extraTable == 0 && extraMenu == 0) {
             otraLista = alerogens.toArray()
+        }else if(extraTable == 0 ){
+            otraLista = menuP3.allergen.toMutableList()
         } else {
             otraLista = menuP2.allergen.toMutableList()
         }

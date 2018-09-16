@@ -45,6 +45,7 @@ class MenuFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_menu, container, false)
+
     }
 
     var menuList: List<MenuRest> ? = null
@@ -92,8 +93,6 @@ class MenuFragment : Fragment() {
 
         }, 100.toLong())
 
-
-
     }
 
     fun setRecyclerViewClickListener() {
@@ -104,7 +103,6 @@ class MenuFragment : Fragment() {
             val MenuIndex = menu_list.getChildAdapterPosition(it)
             val tableI = arguments?.getSerializable(ARG_TABLE) as TableMenu
             val tableIndex = TableMenuList.getIndex(tableI)
-
             // Opciones especiales para navegar con vistas comunes
             val animationOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
                     activity!!,

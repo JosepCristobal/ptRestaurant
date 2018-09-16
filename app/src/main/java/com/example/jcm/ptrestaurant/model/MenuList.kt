@@ -97,4 +97,6 @@ object MenuList {
                 get() = MenuList.menuList.size
 
         fun toArray() = MenuList.menuList.toTypedArray()
+
+        fun oneMenu() = MenuList.menuList.toMutableList()
 }

@@ -37,8 +37,8 @@ class DetailMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail_menu)
 
         // Sacamos los datos con los que configurar la interfaz
-        val table = TableMenuList[intent.getIntExtra(EXTRA_TABLE_INDEX, 0)]
-        val menuIndex = intent.getIntExtra(EXTRA_MENU_INDEX, 0)
+        val table = TableMenuList[intent.getIntExtra(EXTRA_TABLE_INDEX, -1)]
+        val menuIndex = intent.getIntExtra(EXTRA_MENU_INDEX, -1)
         val menuP = table.menutable[menuIndex]
 
         // Actualizamos la interfaz
@@ -54,7 +54,7 @@ class DetailMenuActivity : AppCompatActivity() {
 
         alergen_button.setOnClickListener {
 
-            Toast.makeText(this@DetailMenuActivity, "You clicked me.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Lista de alérgenos", Toast.LENGTH_LONG).show()
             createTable()
         }
 
@@ -67,8 +67,8 @@ class DetailMenuActivity : AppCompatActivity() {
     fun createTable() {
        val intent = Alergeno.intent(
                this,
-               intent.getIntExtra(EXTRA_TABLE_INDEX, 0),
-               intent.getIntExtra(EXTRA_MENU_INDEX, 0))
+               intent.getIntExtra(EXTRA_TABLE_INDEX, -1),
+               intent.getIntExtra(EXTRA_MENU_INDEX, -1))
 
         startActivity(intent)
 
