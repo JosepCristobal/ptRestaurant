@@ -3,7 +3,7 @@ package com.example.jcm.ptrestaurant.model
 import com.example.jcm.ptrestaurant.R
 
 object TableMenuList {
-    private val tablesMenuList: List<TableMenu> = mutableListOf(
+    private val tablesMenuList: MutableList<TableMenu> = mutableListOf(
             TableMenu("Mesa01","Berasategui", mutableListOf(
                     MenuRest("01","Esparragos", R.drawable.esparrago_langostino_r,10.05f,"Esparragos rellenos de langostinos y con salsa de aceite ligera",
                             listOf(
@@ -171,6 +171,9 @@ object TableMenuList {
 
     operator fun get(index: Int) = tablesMenuList[index]
 
-    fun toArray() = TableMenuList.tablesMenuList.toMutableList()
+    fun toArray() = tablesMenuList.toMutableList()
+
+    fun addMenuTable(index:Int, regMenu:MenuRest) = tablesMenuList[index].menutable.toMutableList().add(tablesMenuList[index].menutable.size,regMenu)
+
 
 }

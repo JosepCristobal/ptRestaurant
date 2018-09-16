@@ -15,36 +15,22 @@ class Pruebas_insert : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pruebas_insert)
-        button.setOnClickListener{ addFiles()}
+        button.setOnClickListener{ addFiles(3,"Cambiamos las observaciones por las nuevas para la prueba de inserción 5", 7)}
     }
 
 
-    fun addFiles(){
-        //Esta es la lista de las mesas con su contenido de menus
-        val tableMenuList : TableMenuList
-        // Esta es la base de los menús
-        val menuRest:MenuRest
+    fun addFiles(numPlate: Int, coment: String, numTable:Int){
 
-        //Este es la lista de menus
-        val menuList: MenuList
+        var regMenu:MenuRest = MenuList.toArray()[numPlate]
+        regMenu.menuobs = coment
 
-        //Esta es la base de cada una de las mesas
-        val tableMenu:TableMenu
+        val menuMesa = TableMenuList.toArray()[numTable].menutable.toMutableList()
+        val totRegistros = TableMenuList.toArray()[numTable].menutable.toMutableList().size
 
-        val regMenu:MenuRest = MenuList.toArray()[2]
-        regMenu.menuobs = "Cambiamos las observaciones por las nuevas"
-        //regMenu.copy("Mesa_11","Pruebas de insercion",R.drawable.sorbete_mandarina,10.00f,"Sorbete de mandarina con un toque especial de la casa"," ","Mis Observaciones")
-        MenuList.oneMenu().add(2, regMenu)
+        menuMesa.add(totRegistros, regMenu)
 
-        val regMenuInTable:TableMenu = TableMenuList.toArray()[1]
-        regMenuInTable
-        val regListMenuInTable:TableMenuList = TableMenuList
+        TableMenuList[numTable].menutable = menuMesa
 
-
-        TableMenuList.toArray().add(1,regMenu)
-
-
-        val e = 2
         val intent = Intent(this, TablesActivity::class.java)
         startActivity(intent)
 

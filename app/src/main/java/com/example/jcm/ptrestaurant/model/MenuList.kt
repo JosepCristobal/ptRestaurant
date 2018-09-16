@@ -3,7 +3,7 @@ package com.example.jcm.ptrestaurant.model
 import com.example.jcm.ptrestaurant.R
 
 object MenuList {
-    private val menuList: List<MenuRest> = listOf(
+    private val menuList: MutableList<MenuRest> = mutableListOf(
             MenuRest("01","Esparragos",R.drawable.esparrago_langostino_r,10.05f,"Esparragos rellenos de langostinos y con salsa de aceite ligera",
                     listOf(
                             Allergen("04","Crustaceos", R.drawable.a_crustaceos ),
