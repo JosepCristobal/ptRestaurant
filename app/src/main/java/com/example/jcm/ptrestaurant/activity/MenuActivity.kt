@@ -3,6 +3,7 @@ package com.example.jcm.ptrestaurant.activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.example.jcm.ptrestaurant.R
 import com.example.jcm.ptrestaurant.fragment.MenuFragment
 import com.example.jcm.ptrestaurant.fragment.MenuTotFragment
@@ -12,6 +13,7 @@ import com.example.jcm.ptrestaurant.model.TableMenu
 import com.example.jcm.ptrestaurant.model.TableMenuList
 
 import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.content_menu.*
 
 class MenuActivity : AppCompatActivity() {
 
@@ -30,5 +32,6 @@ class MenuActivity : AppCompatActivity() {
                     .add(R.id.menu_list_fragment, fragment)
                     .commit()
         }
+
     }
 }

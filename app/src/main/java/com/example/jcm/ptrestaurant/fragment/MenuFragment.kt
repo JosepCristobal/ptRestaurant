@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.support.v7.widget.GridLayoutManager
+import android.widget.Button
+import android.widget.Toast
 
 
 import com.example.jcm.ptrestaurant.R
@@ -56,6 +58,7 @@ class MenuFragment : Fragment() {
                 menu_list.adapter = adapter
                 //Si alguien pulsa una fila, nos queremos enterar
                 setRecyclerViewClickListener()
+
             }
         }
 
@@ -88,6 +91,9 @@ class MenuFragment : Fragment() {
                         .show()
 
         }, 100.toLong())
+
+
+
     }
 
     fun setRecyclerViewClickListener() {

@@ -21,4 +21,6 @@ object AllergensList{
             Allergen("14", "Sulfitos", R.drawable.a_sulfitos)
     )
 
+
+    fun toArray() = allergenList.toMutableList()
 }

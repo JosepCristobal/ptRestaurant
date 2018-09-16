@@ -2,10 +2,9 @@ package com.example.jcm.ptrestaurant.activity
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.TypedArray
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.support.constraint.ConstraintLayout
 import android.view.ViewGroup
 import android.widget.*
 import com.example.jcm.ptrestaurant.R
@@ -13,9 +12,9 @@ import com.example.jcm.ptrestaurant.model.Allergen
 import com.example.jcm.ptrestaurant.model.AllergensList
 import com.example.jcm.ptrestaurant.model.TableMenuList
 import kotlinx.android.synthetic.main.activity_alergenos.*
-import kotlinx.android.synthetic.main.content_menu.*
+import java.lang.reflect.Array
 
-class DetailMenuActivity : AppCompatActivity() {
+class Alergeno : AppCompatActivity() {
 
     companion object {
 
@@ -23,65 +22,45 @@ class DetailMenuActivity : AppCompatActivity() {
         val EXTRA_MENU_INDEX = "EXTRA_MENU_INDEX"
 
         fun intent(context: Context, tableIndex: Int, menuIndex: Int): Intent {
-            val intent = Intent(context, DetailMenuActivity::class.java)
+            val intent = Intent(context, Alergeno::class.java)
             intent.putExtra(EXTRA_TABLE_INDEX, tableIndex)
             intent.putExtra(EXTRA_MENU_INDEX, menuIndex)
 
             return intent
         }
     }
-
-
+    
+    val COLUMNS = 2
+    val tableLayout by lazy { TableLayout(this) }
+    val alerogens = AllergensList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_menu)
+        setContentView(R.layout.activity_alergenos)
 
-        // Sacamos los datos con los que configurar la interfaz
-        val table = TableMenuList[intent.getIntExtra(EXTRA_TABLE_INDEX, 0)]
-        val menuIndex = intent.getIntExtra(EXTRA_MENU_INDEX, 0)
-        val menuP = table.menutable[menuIndex]
-
-        // Actualizamos la interfaz
-        plate?.text = menuP.description
-        menu_image?.setImageResource(menuP.icon)
-        num_plate?.text ="Plato núm:  ${menuP.idMenu.toString()}"
-        price?.text = "Precio:  ${menuP.price.toString()}€"
-        menu_description?.text= "Descripción: ${menuP.detail.toString()}"
-        other?.text = "Consideraciones: ${menuP.menuobs}"
-
-
-
-
-        alergen_button.setOnClickListener {
-
-            Toast.makeText(this@DetailMenuActivity, "You clicked me.", Toast.LENGTH_LONG).show()
-            createTable()
+        val lp = TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        tableLayout.apply {
+            layoutParams = lp
+            isShrinkAllColumns = true
         }
 
-
-        }
-
-
+        createTable()
+    }
 
 
     fun createTable() {
-       val intent = Alergeno.intent(
-               this,
-               intent.getIntExtra(EXTRA_TABLE_INDEX, 0),
-               intent.getIntExtra(EXTRA_MENU_INDEX, 0))
-
-        startActivity(intent)
-
-
-/*        val table2 = TableMenuList[intent.getIntExtra(EXTRA_TABLE_INDEX, 0)]
+        val table2 = TableMenuList[intent.getIntExtra(EXTRA_TABLE_INDEX, 0)]
         val menuIndex2 = intent.getIntExtra(EXTRA_MENU_INDEX, 0)
         val menuP2 = table2.menutable[menuIndex2]
-        //val listaFiltrada = allergens.toArray()
-        val otraLista = menuP2.allergen
-        val iterate = otraLista.listIterator()
-        var rows = 0
+        lateinit var otraLista:MutableList<Allergen>
+        if (intent.getIntExtra(EXTRA_TABLE_INDEX,0) == 0){
+            otraLista = alerogens.toArray()
+        } else {
+            otraLista = menuP2.allergen.toMutableList()
+        }
         var rowsReal = (otraLista.size/2).toInt() + (otraLista.size % 2)
 
+        val iterate = otraLista.listIterator()
+        val rows = (otraLista.size/2).toInt()
         val cols = 2
         var contador = 0
         val totalReg = otraLista.size
@@ -93,7 +72,7 @@ class DetailMenuActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT)
 
             for (j in 0 until cols) {
-                if(contador >= totalReg) return
+            if(contador >= totalReg) return
                 contador += 1
                 val button = Button(this)
                 val image = ImageView(this)
@@ -103,7 +82,7 @@ class DetailMenuActivity : AppCompatActivity() {
                 val totalChardecAler = otraLista[contador -1].alleDescription
                 image.apply {
                     layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                            TableRow.LayoutParams.WRAP_CONTENT)
+                        TableRow.LayoutParams.WRAP_CONTENT)
                     image.setImageResource(iconAler)
                 }
 
@@ -116,11 +95,10 @@ class DetailMenuActivity : AppCompatActivity() {
                 row.addView(image)
                 row.addView(textView)
             }
-            //tableLayout.addView(row)
+            tableLayout.addView(row)
         }
-      //  linearLayout.addView(tableLayout)*/
+        linearLayout.addView(tableLayout)
     }
-
 
 
 }

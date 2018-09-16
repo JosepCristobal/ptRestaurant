@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.support.v7.widget.GridLayoutManager
+import android.widget.Toast
 
 
 import com.example.jcm.ptrestaurant.R
@@ -16,6 +17,7 @@ import com.example.jcm.ptrestaurant.model.MenuList
 import com.example.jcm.ptrestaurant.model.MenuRest
 import com.example.jcm.ptrestaurant.model.TableMenu
 import com.example.jcm.ptrestaurant.model.TableMenuList
+import kotlinx.android.synthetic.main.content_menu.*
 import kotlinx.android.synthetic.main.fragment_menu.*
 
 
@@ -56,6 +58,7 @@ class MenuTotFragment : Fragment() {
                 menuList = MenuList.toArray().asList()
 
         }, 100.toLong())
+
     }
 
 }

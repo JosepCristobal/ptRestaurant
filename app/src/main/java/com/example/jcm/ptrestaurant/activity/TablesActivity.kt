@@ -51,6 +51,12 @@ class TablesActivity : AppCompatActivity(), TablesFragment.OnTableSelectedListen
                 startActivity(intent)
                 return true
             }
+            R.id.alergenos -> {
+                //Lanzaremos la llamada al menú carta
+                val intent = Intent(this, Alergeno::class.java)
+                startActivity(intent)
+                return true
+            }
 
         }
         return super.onOptionsItemSelected(item)

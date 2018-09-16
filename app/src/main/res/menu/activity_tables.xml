@@ -5,4 +5,7 @@
     <item
         android:id="@+id/carta_menu"
         android:title="Carta-Menu" />
+    <item
+        android:id="@+id/alergenos"
+        android:title="Alérgenos" />
 </menu>

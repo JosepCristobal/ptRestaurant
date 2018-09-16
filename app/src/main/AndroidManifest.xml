@@ -15,19 +15,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.MenuTableActivity"></activity>
+        <activity android:name=".activity.DetailMenuActivity"></activity>
+        <activity android:name=".activity.Alergeno">
 
-        </activity>
-        <activity android:name=".activity.MenuTableActivity">
 
-        </activity>
-
-        <activity android:name=".activity.DetailMenuActivity">
 
         </activity>
     </application>
