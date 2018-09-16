@@ -57,8 +57,19 @@ class TablesActivity : AppCompatActivity(), TablesFragment.OnTableSelectedListen
                 startActivity(intent)
                 return true
             }
+            R.id.insert -> {
+                //Lanzamos la llamada a la pantalla de inserción de platos
+                val intent = Intent(this, Pruebas_insert::class.java)
+                startActivity(intent)
+                return true
+            }
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 }

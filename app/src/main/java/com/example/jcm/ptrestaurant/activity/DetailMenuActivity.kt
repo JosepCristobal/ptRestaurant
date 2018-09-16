@@ -50,8 +50,6 @@ class DetailMenuActivity : AppCompatActivity() {
         other?.text = "Consideraciones: ${menuP.menuobs}"
 
 
-
-
         alergen_button.setOnClickListener {
 
             Toast.makeText(this, "Lista de alérgenos", Toast.LENGTH_LONG).show()
@@ -59,9 +57,7 @@ class DetailMenuActivity : AppCompatActivity() {
         }
 
 
-        }
-
-
+    }
 
 
     fun createTable() {
@@ -72,53 +68,6 @@ class DetailMenuActivity : AppCompatActivity() {
 
         startActivity(intent)
 
-
-/*        val table2 = TableMenuList[intent.getIntExtra(EXTRA_TABLE_INDEX, 0)]
-        val menuIndex2 = intent.getIntExtra(EXTRA_MENU_INDEX, 0)
-        val menuP2 = table2.menutable[menuIndex2]
-        //val listaFiltrada = allergens.toArray()
-        val otraLista = menuP2.allergen
-        val iterate = otraLista.listIterator()
-        var rows = 0
-        var rowsReal = (otraLista.size/2).toInt() + (otraLista.size % 2)
-
-        val cols = 2
-        var contador = 0
-        val totalReg = otraLista.size
-
-        for (i in 0 until rowsReal) {
-
-            val row = TableRow(this)
-            row.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT)
-
-            for (j in 0 until cols) {
-                if(contador >= totalReg) return
-                contador += 1
-                val button = Button(this)
-                val image = ImageView(this)
-                val textView = TextView(this)
-
-                val iconAler = otraLista[contador -1].alleIcon
-                val totalChardecAler = otraLista[contador -1].alleDescription
-                image.apply {
-                    layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                            TableRow.LayoutParams.WRAP_CONTENT)
-                    image.setImageResource(iconAler)
-                }
-
-                textView.apply {
-                    layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                            TableRow.LayoutParams.WRAP_CONTENT)
-                    text = totalChardecAler
-                }
-
-                row.addView(image)
-                row.addView(textView)
-            }
-            //tableLayout.addView(row)
-        }
-      //  linearLayout.addView(tableLayout)*/
     }
 
 

@@ -25,7 +25,6 @@ class MenuTableActivity : AppCompatActivity() {
             return intent
         }
     }
-    //private val tableMenuList = TableMenuList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

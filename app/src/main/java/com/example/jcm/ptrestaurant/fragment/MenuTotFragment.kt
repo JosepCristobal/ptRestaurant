@@ -82,7 +82,6 @@ class MenuTotFragment : Fragment() {
                     it,
                     "transition_to_detail"
             )
-
             startActivity(DetailMenuActivity.intent(activity!!, 0, MenuIndex), animationOptions.toBundle())
         }
     }

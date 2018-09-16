@@ -73,6 +73,7 @@ class TablesFragment : Fragment() {
         tables_list.setOnItemClickListener{_, _, index, _ ->
             //Avisamos al listener que una mesa ha sido seleccionada
             onTableSelectedListener?.onTableSelected(tablesL[index], index)
+
         }
 
     }
