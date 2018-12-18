@@ -20,14 +20,15 @@ class Pruebas_insert : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pruebas_insert)
         button.setOnClickListener{ addFiles()}
+        text_mesa.requestFocus()
     }
-//3,"Cambiamos las observaciones por las nuevas para la prueba de inserción 5", 7)
 
     fun addFiles(){
         val numPlate: Int = text_plato.text.toString().toInt()
         val coment: String = text_comentario.text.toString()
-        val numTable:Int = text_mesa.text.toString().toInt()
-        if (numTable>10 || numPlate>11 || numTable<1 || numPlate<1) {
+        val numTable:Int = text_mesa.text.toString().toInt()-1
+
+        if ((numTable>10 || numPlate>11 || numTable<0 || numPlate<0) && (numTable == null || numPlate== null)) {
             Toast.makeText(this,
                     "El número de mesa entre 1 y 10 El número de plato entre 1 y 12",
                     Toast.LENGTH_LONG).show()
@@ -39,8 +40,8 @@ class Pruebas_insert : AppCompatActivity() {
         var regMenu:MenuRest = MenuList.toArray()[numPlate-1]
         regMenu.menuobs = coment
 
-        val menuMesa = TableMenuList.toArray()[numTable-1].menutable.toMutableList()
-        val totRegistros = TableMenuList.toArray()[numTable-1].menutable.toMutableList().size
+        val menuMesa = TableMenuList.toArray()[numTable].menutable.toMutableList()
+        val totRegistros = TableMenuList.toArray()[numTable].menutable.toMutableList().size
 
         menuMesa.add(totRegistros, regMenu)
 
@@ -49,7 +50,7 @@ class Pruebas_insert : AppCompatActivity() {
         text_mesa.text.clear()
         text_comentario.text.clear()
 
-        onBackPressed()
+        this.finish() //onBackPressed()
 
     }
 }

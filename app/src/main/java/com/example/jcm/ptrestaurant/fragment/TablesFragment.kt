@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ListView
 
 import com.example.jcm.ptrestaurant.R
 import com.example.jcm.ptrestaurant.model.Table
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_tables.*
 import kotlin.math.roundToLong
 
 
+
 class TablesFragment : Fragment() {
 
     companion object {
@@ -26,6 +28,11 @@ class TablesFragment : Fragment() {
         @JvmStatic
         fun newInstance() = TablesFragment()
     }
+
+    var adapter : ArrayAdapter<TableMenu>? = null
+    var tablesL = TableMenuList
+    var otraLista = tablesL.toArray()
+
     //Creamos un atributo que va a ser el listener
     private var onTableSelectedListener: OnTableSelectedListener? = null
 
@@ -35,19 +42,30 @@ class TablesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_tables, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //val tablesL = TablesList
-       // val adapter = ArrayAdapter<Table>(activity, android.R.layout.simple_list_item_1,
-            //    tablesL.toArray())
+        calculaList()
+        createAdapter()
 
-//pruebas de calculo para total platos
-        val tablesL = TableMenuList
-        //val iterate = TableMenuList.
+        adapter?.notifyDataSetChanged()
+        //Queremos saber que fila se ha pulsado en la lista
+        tables_list.setOnItemClickListener{_, _, index, _ ->
+            //Avisamos al listener que una mesa ha sido seleccionada
+            onTableSelectedListener?.onTableSelected(tablesL[index], index)
+
+        }
+    }
+    fun createAdapter(){
+
+        adapter = ArrayAdapter<TableMenu>(activity, android.R.layout.simple_list_item_1, otraLista )
+        tables_list.adapter = adapter
+    }
+
+    fun calculaList(){
         val totalPlates= tablesL.calculPlates(0)
         val lista: MutableList<TableMenu> = ArrayList()
-        val otraLista = tablesL.toArray()
         val iterate = otraLista.listIterator()
         while(iterate.hasNext()){
             val oldValue = iterate.next()
@@ -63,19 +81,6 @@ class TablesFragment : Fragment() {
             oldValue.description = "${oldValue.description.padEnd(150 - totalChar)}  $textTables  $totCheck"
             iterate.set(oldValue)
         }
-//Fin de pruebas
-
-        val adapter = ArrayAdapter<TableMenu>(activity, android.R.layout.simple_list_item_1,
-              otraLista //tablesL.toArray()
-        )
-        tables_list.adapter = adapter
-        //Queremos saber que fila se ha pulsado en la lista
-        tables_list.setOnItemClickListener{_, _, index, _ ->
-            //Avisamos al listener que una mesa ha sido seleccionada
-            onTableSelectedListener?.onTableSelected(tablesL[index], index)
-
-        }
-
     }
 
     override fun onAttach(context: Context?) {
@@ -86,6 +91,7 @@ class TablesFragment : Fragment() {
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
         commonAttach(activity)
+
     }
     //Creamos método para las dos funciones anteriores
     private fun commonAttach(activity: Activity?) {

@@ -31,6 +31,7 @@ class TablesActivity : AppCompatActivity(), TablesFragment.OnTableSelectedListen
 
     }
 
+
     override fun onTableSelected(table: TableMenu, position: Int) {
         val intent = MenuTableActivity.intent(this, table)
         startActivity(intent)

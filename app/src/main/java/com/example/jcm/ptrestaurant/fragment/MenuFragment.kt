@@ -91,7 +91,7 @@ class MenuFragment : Fragment() {
                 Snackbar.make(view!!, totCheck, Snackbar.LENGTH_LONG)
                         .show()
 
-        }, 100.toLong())
+        }, 500.toLong())
 
     }
 
